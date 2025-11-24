@@ -10,6 +10,7 @@ public:
                 else if(i+j==mat.size()-1){
                     sum+=mat[i][j];
                 }
+                else continue;
             }
         }
         return sum;
