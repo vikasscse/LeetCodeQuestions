@@ -13,8 +13,8 @@ public:
                 if(st.empty()) return false;
                 char c=st.top();
                 st.pop();
-               if((s[i]==')' && c!='(' ) || (s[i]=='}' && c!='{') || (s[i]==']' && c!='['))
-               return false;
+               if((s[i]==')' && c=='(' ) || (s[i]=='}' && c=='{') || (s[i]==']' && c=='[')) continue;
+               else return false;
             
             }
         }
