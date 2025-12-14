@@ -17,6 +17,9 @@ public:
         int left=minDepth(root->left);
         int right=minDepth(root->right);
 
+        if(!root->left && !root->right)
+        return 1;
+
         if (!root->left)
         return 1 + right;
         if (!root->right)
