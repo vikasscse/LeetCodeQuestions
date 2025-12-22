@@ -14,7 +14,7 @@ public:
 
     TreeNode*find(vector<int>& preorder,int min,int max,int &index)
     {
-        if(index>=preorder.size() || preorder[index]>max)
+        if(index>=preorder.size() || preorder[index]>max || preorder[index]<min)
         {
             return NULL;
         }
