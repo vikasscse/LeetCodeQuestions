@@ -1,13 +1,25 @@
 class Solution {
 public:
     int pivotInteger(int n) {
-        int total = n * (n + 1) / 2;
-        int x = sqrt(total);
+        int totalsum=0;
+        int sum=0;
+        int pivot=-1;
 
-        if (x * x == total)
+        for(int i=0;i<=n;i++)
         {
-            return x;
+            totalsum+=i;
         }
-        return -1;
+        for(int i=n;i>=1;i--)
+        {
+            sum+=i;
+
+            if(totalsum==sum)
+            {
+                pivot=i;
+                break;
+            }
+            totalsum-=i;
+        }
+        return pivot;
     }
 };
