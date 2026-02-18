@@ -2,12 +2,14 @@ class Solution {
 public:
     vector<int> findDuplicates(vector<int>& nums) {
         vector<int>ans;
-        sort(nums.begin(),nums.end());
+        vector<bool>temp(nums.size()+1,false);
 
-        for(int i=0;i<nums.size()-1;i++)
+        for(int i=0;i<nums.size();i++)
         {
-            if(nums[i]==nums[i+1])
+            if(temp[nums[i]]==true)
             ans.push_back(nums[i]);
+            else
+            temp[nums[i]]=true;
         }
         return ans;
     }
