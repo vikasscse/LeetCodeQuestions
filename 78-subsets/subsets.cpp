@@ -3,7 +3,7 @@ public:
 
     void subset(vector<int>&nums,int p,vector<int>temp,vector<vector<int>>&ans)
     {
-        if(p>=nums.size())
+        if(p==nums.size())
         {
             ans.push_back(temp);
             return;
