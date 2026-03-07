@@ -1,24 +1,22 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-     if(s.empty()) return 0;
-        bool count[128];
-        for(int i=0;i<128;i++){
-            count[i]=0;
-        }
-        int total=1;
-        int first=0,second=0;
-        while(second<s.size())
+        int left=0,right=0,count=0;
+        set<char>st;
+        while(right<s.size())
         {
-            while(count[s[second]])
+            if(st.count(s[right])==0)
             {
-                count[s[first]]=0;
-                first++;
+                st.insert(s[right]);
+                count=max(count,right-left+1);
+                right++;
             }
-            count[s[second]]=1;
-            total=max(total,second-first+1);
-            second++;
+            else
+            {
+                st.erase(s[left]);
+                left++;
+            }
         }
-        return total;
+        return count;
     }
 };
