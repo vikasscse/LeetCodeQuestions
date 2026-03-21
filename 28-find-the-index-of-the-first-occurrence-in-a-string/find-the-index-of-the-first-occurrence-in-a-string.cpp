@@ -5,7 +5,7 @@ public:
         int i=0,j=0;
         int start=0;
 
-        while(i<needle.size() && j<haystack.size())
+        while(j<haystack.size())
         {
             if(needle[i]==haystack[j])
             {
