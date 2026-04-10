@@ -19,8 +19,6 @@ public:
             solve(nums,ans,index+1);
             swap(nums[i],nums[index]);
         }
-
-
     }
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         vector<vector<int>>ans;
