@@ -16,7 +16,8 @@ public:
             {
                 end=mid;
             }
-            else end=end-1;
+            else if(nums[mid]==nums[end])
+            end=end-1;
         }
         return nums[end];
     }
