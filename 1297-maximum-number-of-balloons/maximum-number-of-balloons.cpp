@@ -7,16 +7,15 @@ public:
         {
             arr[text[i]-'a']++;
         }
-        string s="balloon";
 
-        int count=INT_MAX;
+        int b=arr['b'-'a'];
+        int a=arr['a'-'a'];
+        int l=arr['l'-'a'];
+        int o=arr['o'-'a'];
+        int n=arr['n'-'a'];
 
-        count=min(count,arr['b'-'a']);
-        count=min(count,arr['a'-'a']);
-        count=min(count,arr['l'-'a']/2);
-        count=min(count,arr['o'-'a']/2);
-        count=min(count,arr['n'-'a']);
-
-        return count;
+        l/=2;
+        o/=2;
+        return min({b,a,l,o,n});
     }
 };
