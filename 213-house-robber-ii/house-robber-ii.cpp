@@ -1,16 +1,16 @@
 class Solution {
 public:
 
-    int find(int index,vector<int>&nums,int n,vector<int>&dp)
-    {
-        if(index>n)
-        return 0;
+    // int find(int index,vector<int>&nums,int n,vector<int>&dp)
+    // {
+    //     if(index>n)
+    //     return 0;
 
-        if(dp[index]!=-1)
-        return dp[index];
+    //     if(dp[index]!=-1)
+    //     return dp[index];
 
-        return dp[index]=max(nums[index]+find(index+2,nums,n,dp),find(index+1,nums,n,dp));
-    }
+    //     return dp[index]=max(nums[index]+find(index+2,nums,n,dp),find(index+1,nums,n,dp));
+    // }
     int rob(vector<int>& nums) {
         int n=nums.size();
         if(n==1) return nums[0];
@@ -18,6 +18,18 @@ public:
         vector<int>dp1(n+2,-1);
         vector<int>dp2(n+2,-1);
 
-        return max(find(0,nums,n-2,dp1),find(1,nums,n-1,dp2));
+        dp1[n-1]=dp1[n]=0;
+        dp2[n]=dp2[n+1]=0;
+
+        for(int i=n-2;i>=0;i--)
+        {
+            dp1[i]=max(nums[i]+dp1[i+2],dp1[i+1]);
+        }
+        for(int i=n-1;i>=1;i--)
+        {
+            dp2[i]=max(nums[i]+dp2[i+2],dp2[i+1]);
+        }
+
+        return max(dp1[0],dp2[1]);
     }
 };
