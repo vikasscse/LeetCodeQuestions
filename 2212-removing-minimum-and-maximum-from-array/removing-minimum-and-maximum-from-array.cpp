@@ -1,31 +1,40 @@
 class Solution {
 public:
     int minimumDeletions(vector<int>& nums) {
-        int a,b,c,d;
-        int index1=-1;
-        int n=nums.size();
-        int index2=-1;
-        int max=INT_MIN;
-        int min=INT_MAX;
-        for(int i=0;i<nums.size();i++){
-            if(max<nums[i]){
-                max=nums[i];
-                index1=i;
+        unordered_map<int,int>m;
+
+        for(int i=0;i<nums.size();i++)
+        {
+            m[nums[i]]=i;
+        }
+
+        int mini=INT_MAX;
+        int maxi=INT_MIN;
+
+        int index1=-1,index2=-1;
+        for(auto x: m)
+        {
+            if(mini > x.first)
+            {
+                mini=x.first;
+                index1=x.second;
+            }
+
+            if(maxi < x.first)
+            {
+                maxi=x.first;
+                index2=x.second;
             }
         }
-        for(int i=0;i<nums.size();i++){
-            if(min>nums[i]){
-                min=nums[i];
-                index2=i;
-            }
-        }
-        int i=std::min(index1,index2);
-        int j=std::max(index1,index2);
-        a=j+1;
-        b=n-i;
-       c=j+1+(n-i);
-        d=i+1+(n-j);
-        int e=std::min({a,b,c,d});
-        return e;
+        //delete from left
+        int left=max(index1,index2)+1;
+        //delete from right
+        int right=nums.size()-(min(index1,index2));
+
+        //from left and right both
+        int both=min(index1,index2)+1+ nums.size()-max(index1,index2);
+
+        return min(both,min(left,right));
+        
     }
 };
