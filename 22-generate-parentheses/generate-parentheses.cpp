@@ -1,25 +1,46 @@
 class Solution {
 public:
 
-    void fun(int n,string str,int open,int close,vector<string>&ans)
+    bool istruee(string s)
     {
-        if(open==0 && close==0)
+        stack<char>st;
+        for(int i=0;i<s.size();i++)
         {
-            ans.push_back(str);
+            if(s[i]=='(')
+            st.push(s[i]);
+            else 
+            {
+                if(!st.empty())
+                st.pop();
+                else return false;
+            }
+        }
+        if(st.size()==0)
+        return true;
+
+        return false; 
+    }
+
+    void parenthesis(vector<string>&ans,string str,int n)
+    {
+        if(str.size()==n)
+        {
+            if(istruee(str))
+            {
+                ans.push_back(str);
+            }
             return;
+
         }
-        if(open>0)
-        {
-            fun(n,str+"(",open-1,close,ans);
-        }
-        if(close>open)
-        {
-            fun(n,str+")",open,close-1,ans);
-        }
+        parenthesis(ans,str+"(",n);
+        parenthesis(ans,str+")",n);
     }
     vector<string> generateParenthesis(int n) {
         vector<string>ans;
-        fun(n,"",n,n,ans);
+        string str="(";
+
+        parenthesis(ans,str,2*n);
+
         return ans;
     }
 };
