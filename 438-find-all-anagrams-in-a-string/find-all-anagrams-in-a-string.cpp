@@ -21,19 +21,18 @@ public:
             ans.push_back(0);
         }
 
-        for(int i=1;i<=s.size()-p.size();i++)
+        for(int i=p.size();i<s.size();i++)
         {
-            if(s_freq[s[i-1]-'a']!=0)
-            s_freq[s[i-1]-'a']--;
+            s_freq[s[i]-'a']++;
 
-            s_freq[s[i+p.size()-1]-'a']++;
+            s_freq[s[i-p.size()]-'a']--;
 
             for(int j=0;j<p_freq.size();j++)
             {
                 if(p_freq[j]!=s_freq[j])
                 break;
                 else if(j==p_freq.size()-1)
-                ans.push_back(i);
+                ans.push_back(i-p.size()+1);
             }
         }
         return ans;
