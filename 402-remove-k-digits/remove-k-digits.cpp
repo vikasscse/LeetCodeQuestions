@@ -2,40 +2,47 @@ class Solution {
 public:
     string removeKdigits(string num, int k) {
         stack<int>st;
-        int i=0,temp;
-        while(i<num.size())
+        string ans="";
+
+        for(int i=0;i<num.size();i++)
         {
-            temp=num[i]-'0';
-            while(st.size() && st.top()>temp && k)
+            if(st.empty())
+            st.push(num[i]-'0');
+            else if(st.top()>(num[i]-'0'))
             {
-                st.pop();
-                k--;
+                while(k>0 && !st.empty() && st.top()>(num[i]-'0'))
+                {
+                    st.pop();
+                    k--;
+                }
+                st.push(num[i]-'0');
             }
-            st.push(temp);
-            i++;
+            else
+            st.push(num[i]-'0');
         }
-        while(k--)
+        while(k>0 && !st.empty())
         {
             st.pop();
+            k--;
         }
-        string ans;
-        char c;
-        while(st.size())
+        stack<int>temp;
+
+        while(!st.empty())
         {
-            c='0'+st.top();
+            temp.push(st.top());
             st.pop();
-            ans+=c;
         }
-        i=ans.size()-1;
-        while(i>=0 && ans[i]=='0')
+        while(!temp.empty() && temp.top()==0)
         {
-            ans.pop_back();
-            i--;
+            temp.pop();
         }
-        reverse(ans.begin(),ans.end());
-        if(ans.size()==0)
-        return "0";
-        else
+        while(!temp.empty())
+        {
+            ans+=(temp.top()+'0');
+            temp.pop();
+        }
+        if(ans=="")
+        ans+="0";
         return ans;
     }
 };
