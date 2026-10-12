@@ -7,7 +7,7 @@ public:
         return;
         if(target==0)
         {
-            sort(temp.begin(),temp.end());
+            //sort(temp.begin(),temp.end());
             ans.push_back(temp);
             return;
         }
@@ -30,7 +30,7 @@ public:
         vector<vector<int>>ans;
 
         fun(candidates,target,temp,ans,0);
-        sort(ans.begin(),ans.end());
+        // sort(ans.begin(),ans.end());
         return ans;
     }
 };
